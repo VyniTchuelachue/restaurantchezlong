@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    font-family: "Poppins", "Noto Serif SC", sans-serif;
+  }
+  html[lang="zh"] body {
+    font-family: "Noto Serif SC", "Poppins", serif;
+  }
+}
+
+@layer components {
+  .btn-red {
+    @apply inline-flex items-center gap-3 rounded-md border border-gold/60 bg-gradient-to-b from-cinnabar-light to-cinnabar px-5 py-2.5 text-left text-paper shadow-red transition duration-300 hover:-translate-y-0.5 hover:border-gold hover:from-cinnabar hover:to-cinnabar-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-3 rounded-md border border-gold/70 bg-ink/40 px-5 py-2.5 text-left text-paper backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:bg-ink/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold;
+  }
+
+  .btn-label-zh {
+    @apply block font-zh text-[15px] font-semibold leading-tight;
+  }
+
+  .btn-label-fr {
+    @apply block text-[12px] leading-tight text-gold-light;
+  }
+
+  .seal {
+    @apply inline-grid place-items-center rounded-[3px] border border-cinnabar bg-cinnabar font-brush text-paper shadow-sm;
+  }
+
+  /* Lattice pattern (窗格) used on red panels */
+  .lattice {
+    background-image:
+      linear-gradient(rgba(236, 210, 154, 0.09) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(236, 210, 154, 0.09) 1px, transparent 1px),
+      linear-gradient(rgba(236, 210, 154, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(236, 210, 154, 0.05) 1px, transparent 1px);
+    background-size: 56px 56px, 56px 56px, 14px 14px, 14px 14px;
+  }
+
+  .paper-texture {
+    background-color: #f6efe2;
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(210, 169, 91, 0.12), transparent 40%),
+      radial-gradient(circle at 88% 82%, rgba(161, 29, 29, 0.06), transparent 45%);
+  }
+
+  .ink-texture {
+    background-color: #120c0a;
+    background-image:
+      radial-gradient(ellipse at 0% 0%, rgba(161, 29, 29, 0.35), transparent 50%),
+      radial-gradient(ellipse at 100% 100%, rgba(161, 29, 29, 0.28), transparent 50%);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+::selection {
+  background: #a11d1d;
+  color: #f6efe2;
+}

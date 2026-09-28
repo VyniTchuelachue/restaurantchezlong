@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect x="2" y="2" width="60" height="60" rx="8" fill="#a11d1d"/>
+  <rect x="7" y="7" width="50" height="50" rx="5" fill="none" stroke="#e3c27a" stroke-width="2.5"/>
+  <text x="32" y="45" text-anchor="middle" font-family="'Ma Shan Zheng','KaiTi','STKaiti',serif" font-size="36" fill="#f3dfae">龙</text>
+</svg>
