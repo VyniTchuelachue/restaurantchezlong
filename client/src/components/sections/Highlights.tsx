@@ -1,5 +1,6 @@
 import { MapPin, Soup, Users } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import { Duo } from "@/components/Bilingual";
 import { restaurant } from "@/data/restaurant";
 import { useLang } from "@/i18n";
 
@@ -54,8 +55,14 @@ export default function Highlights() {
                 <Icon className="h-6 w-6" strokeWidth={1.6} aria-hidden />
               </span>
               <span>
-                <span className="block font-zh text-lg font-bold text-ink">{item.zh}</span>
-                <span className="block text-[13px] font-semibold text-cinnabar-dark">{item.latin}</span>
+                <Duo
+                  zh={item.zh}
+                  latin={item.latin}
+                  primary="text-lg font-bold text-ink"
+                  secondary="text-[13px] font-semibold text-cinnabar-dark"
+                  zhClassName="block font-zh"
+                  latinClassName="block"
+                />
                 <span className="mt-1.5 block text-xs leading-relaxed text-ink/60">{item.desc}</span>
               </span>
             </>

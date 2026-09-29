@@ -1,5 +1,6 @@
-import { ArrowRight, Cake, Briefcase, Users, DoorClosed } from "lucide-react";
+import { Cake, Briefcase, Users, DoorClosed } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import { BtnLabel, Duo } from "@/components/Bilingual";
 import { images, type Text } from "@/data/restaurant";
 import { useLang } from "@/i18n";
 import { useReservation } from "@/reservation";
@@ -37,12 +38,14 @@ export default function Groups() {
           </div>
           <Reveal className="relative px-4 py-14 sm:px-10 lg:px-12 xl:px-16">
             <h2>
-              <span lang="zh" className="block font-zh text-3xl font-bold tracking-wider text-paper sm:text-[2.2rem]">
-                聚餐与包间
-              </span>
-              <span className="mt-2 block font-serif text-2xl text-gold-light">
-                {tl({ fr: "Repas de groupe & salons privés", en: "Group dining & private rooms" })}
-              </span>
+              <Duo
+                zh="聚餐与包间"
+                latin={tl({ fr: "Repas de groupe & salons privés", en: "Group dining & private rooms" })}
+                primary="text-3xl font-bold text-paper sm:text-[2.2rem]"
+                secondary="mt-2 text-2xl text-gold-light"
+                zhClassName="block font-zh tracking-wider"
+                latinClassName="block font-serif"
+              />
             </h2>
 
             <p className="mt-6 max-w-md text-[15px] leading-relaxed text-paper/85">
@@ -67,12 +70,7 @@ export default function Groups() {
 
             <button type="button" onClick={() => openReservation("salon")} className="btn-ghost mt-9 border-gold bg-ink/25">
               <DoorClosed className="h-6 w-6 text-gold-light" aria-hidden />
-              <span>
-                <span className="btn-label-zh">预订包间</span>
-                <span className="btn-label-fr inline-flex items-center gap-1">
-                  {tl({ fr: "Réserver un salon privé", en: "Book a private room" })} <ArrowRight className="h-3 w-3" aria-hidden />
-                </span>
-              </span>
+              <BtnLabel zh="预订包间" latin={tl({ fr: "Réserver un salon privé", en: "Book a private room" })} arrow />
             </button>
           </Reveal>
         </div>

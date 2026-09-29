@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import clsx from "clsx";
 import { CheckCircle2, Loader2, MessageCircle, Phone, X } from "lucide-react";
 import { Seal } from "@/components/Decor";
+import { BtnLabel, Duo } from "@/components/Bilingual";
 import { restaurant } from "@/data/restaurant";
 import { useLang } from "@/i18n";
 import type { ReservationType } from "@/reservation";
@@ -130,12 +131,18 @@ export default function ReservationModal({
           <div className="flex items-center gap-3">
             <Seal char="订" className="h-9 w-9 border-gold-light/60 bg-cinnabar-dark text-xl text-gold-light" />
             <h2 id="reservation-title">
-              <span className="block font-zh text-lg font-bold leading-tight">{salon ? "预订包间" : "预订餐桌"}</span>
-              <span className="block text-xs text-gold-light">
-                {salon
-                  ? tl({ fr: "Réserver un salon privé", en: "Book a private room" })
-                  : tl({ fr: "Réserver une table", en: "Book a table" })}
-              </span>
+              <Duo
+                zh={salon ? "预订包间" : "预订餐桌"}
+                latin={
+                  salon
+                    ? tl({ fr: "Réserver un salon privé", en: "Book a private room" })
+                    : tl({ fr: "Réserver une table", en: "Book a table" })
+                }
+                primary="text-lg font-bold leading-tight"
+                secondary="text-xs text-gold-light"
+                zhClassName="block font-zh"
+                latinClassName="block"
+              />
             </h2>
           </div>
           <button
@@ -222,8 +229,7 @@ export default function ReservationModal({
                       onChange={() => update("type", opt.value)}
                       className="sr-only"
                     />
-                    <span className="font-zh">{opt.zh}</span>
-                    <span>{tl(opt)}</span>
+                    <Duo zh={opt.zh} latin={tl(opt)} secondary="opacity-75" zhClassName="font-zh" />
                   </label>
                 ))}
               </div>
@@ -311,10 +317,7 @@ export default function ReservationModal({
               className="btn-red w-full justify-center py-3 disabled:cursor-wait disabled:opacity-80"
             >
               {status === "sending" && <Loader2 className="h-4 w-4 animate-spin" aria-hidden />}
-              <span className="text-center">
-                <span className="btn-label-zh">提交预订</span>
-                <span className="btn-label-fr">{tl({ fr: "Envoyer ma demande", en: "Send my request" })}</span>
-              </span>
+              <BtnLabel zh="提交预订" latin={tl({ fr: "Envoyer ma demande", en: "Send my request" })} center />
             </button>
             <p className="text-center text-xs text-ink/55">
               {t({

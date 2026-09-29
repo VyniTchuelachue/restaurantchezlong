@@ -1,5 +1,6 @@
-import { ArrowRight, MapPin, MessageCircle, Navigation, Phone, Star } from "lucide-react";
+import { MapPin, MessageCircle, Navigation, Phone, Star } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import { BtnLabel, Duo } from "@/components/Bilingual";
 import { restaurant } from "@/data/restaurant";
 import { formatRating, useLang } from "@/i18n";
 
@@ -49,10 +50,14 @@ export default function Contact() {
           </div>
           <Reveal className="relative px-4 py-16 sm:px-10 lg:px-14 xl:pl-[max(3.5rem,calc((100vw-1240px)/2+1.5rem))]">
             <h2 className="flex items-baseline gap-4">
-              <span lang="zh" className="font-zh text-3xl font-bold tracking-wider text-paper sm:text-4xl">
-                联系我们
-              </span>
-              <span className="font-serif text-2xl text-gold-light">Contact</span>
+              <Duo
+                zh="联系我们"
+                latin="Contact"
+                primary="text-3xl font-bold text-paper sm:text-4xl"
+                secondary="text-2xl text-gold-light"
+                zhClassName="font-zh tracking-wider"
+                latinClassName="font-serif"
+              />
             </h2>
 
             <ul className="mt-8 space-y-5">
@@ -79,21 +84,11 @@ export default function Contact() {
             <div className="mt-10 flex flex-wrap gap-4">
               <a href={restaurant.directionsUrl} target="_blank" rel="noreferrer" className="btn-red">
                 <Navigation className="h-5 w-5 text-gold-light" aria-hidden />
-                <span>
-                  <span className="btn-label-zh">获取路线</span>
-                  <span className="btn-label-fr inline-flex items-center gap-1">
-                    {tl({ fr: "Itinéraire", en: "Directions" })} <ArrowRight className="h-3 w-3" aria-hidden />
-                  </span>
-                </span>
+                <BtnLabel zh="获取路线" latin={tl({ fr: "Itinéraire", en: "Directions" })} arrow />
               </a>
               <a href={restaurant.phoneHref} className="btn-ghost">
                 <Phone className="h-5 w-5 text-gold-light" aria-hidden />
-                <span>
-                  <span className="btn-label-zh">电话预订</span>
-                  <span className="btn-label-fr inline-flex items-center gap-1">
-                    {tl({ fr: "Appeler", en: "Call us" })} <ArrowRight className="h-3 w-3" aria-hidden />
-                  </span>
-                </span>
+                <BtnLabel zh="电话预订" latin={tl({ fr: "Appeler", en: "Call us" })} arrow />
               </a>
             </div>
           </Reveal>

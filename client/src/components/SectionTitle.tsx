@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { Seal } from "@/components/Decor";
+import { Duo } from "@/components/Bilingual";
 
 type SectionTitleProps = {
   zh: string;
@@ -12,7 +13,7 @@ type SectionTitleProps = {
   className?: string;
 };
 
-/** Bilingual heading: Chinese title with its French/English counterpart alongside. */
+/** Bilingual heading: the selected language comes first and larger. */
 export default function SectionTitle({
   zh,
   latin,
@@ -30,18 +31,14 @@ export default function SectionTitle({
           align === "center" ? "justify-center" : "justify-start"
         )}
       >
-        <span
-          lang="zh"
-          className={clsx(
-            "font-zh text-3xl font-bold tracking-[0.08em] sm:text-4xl",
-            dark ? "text-paper" : "text-cinnabar"
-          )}
-        >
-          {zh}
-        </span>
-        <span className={clsx("font-serif text-2xl sm:text-3xl", dark ? "text-gold-light" : "text-cinnabar-dark")}>
-          {latin}
-        </span>
+        <Duo
+          zh={zh}
+          latin={latin}
+          primary={clsx("text-3xl font-bold sm:text-4xl", dark ? "text-paper" : "text-cinnabar")}
+          secondary={clsx("text-2xl sm:text-3xl", dark ? "text-gold-light" : "text-cinnabar-dark")}
+          zhClassName="font-zh tracking-[0.08em]"
+          latinClassName="font-serif"
+        />
         {seal && <Seal char={seal} className="h-7 w-7 self-center text-base" />}
       </h2>
       {sub && (

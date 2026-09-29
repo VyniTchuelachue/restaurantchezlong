@@ -1,5 +1,6 @@
 import { MessageCircle, Phone, MapPin } from "lucide-react";
 import { Logo } from "@/components/Decor";
+import { Duo } from "@/components/Bilingual";
 import { LangSwitch, navItems } from "@/components/sections/Navbar";
 import { restaurant } from "@/data/restaurant";
 import { useLang } from "@/i18n";
@@ -26,8 +27,14 @@ export default function Footer() {
             {navItems.map((item) => (
               <li key={item.id}>
                 <a href={`#${item.id}`} className="block text-center text-paper/75 transition hover:text-gold-light">
-                  <span className="block font-zh text-sm">{item.zh}</span>
-                  <span className="block text-[11px] opacity-75">{tl(item)}</span>
+                  <Duo
+                    zh={item.zh}
+                    latin={tl(item)}
+                    primary="text-sm"
+                    secondary="text-[11px] opacity-75"
+                    zhClassName="block font-zh"
+                    latinClassName="block"
+                  />
                 </a>
               </li>
             ))}

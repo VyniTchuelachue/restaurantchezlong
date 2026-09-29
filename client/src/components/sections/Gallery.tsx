@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import SectionTitle from "@/components/SectionTitle";
+import { Duo } from "@/components/Bilingual";
 import { Cloud } from "@/components/Decor";
 import { gallery } from "@/data/restaurant";
 import { useLang } from "@/i18n";
@@ -76,11 +77,14 @@ export default function Gallery() {
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/80 to-transparent px-4 pb-3 pt-10">
-                  <p className="text-sm font-medium text-paper">
-                    <span lang="zh" className="mr-2 font-zh font-bold text-gold-light">
-                      {photo.caption.zh}
-                    </span>
-                    {tl(photo.caption)}
+                  <p className="flex flex-wrap items-baseline gap-x-2 text-sm font-medium text-paper">
+                    <Duo
+                      zh={photo.caption.zh}
+                      latin={tl(photo.caption)}
+                      primary="font-bold text-gold-light"
+                      secondary="text-paper/85"
+                      zhClassName="font-zh"
+                    />
                   </p>
                 </div>
               </li>

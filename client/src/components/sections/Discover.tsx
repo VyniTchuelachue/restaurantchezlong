@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { Flame, Leaf, Users } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import { Duo } from "@/components/Bilingual";
 import { Cloud } from "@/components/Decor";
 import { starters, type StarterDish } from "@/data/restaurant";
 import { useLang } from "@/i18n";
@@ -66,10 +67,14 @@ export default function Discover() {
                 </div>
                 <div className="p-5">
                   <h3>
-                    <span lang="zh" className="block font-zh text-xl font-bold text-ink">
-                      {dish.zh}
-                    </span>
-                    <span className="block text-sm font-semibold text-cinnabar-dark">{tl(dish)}</span>
+                    <Duo
+                      zh={dish.zh}
+                      latin={tl(dish)}
+                      primary="text-xl font-bold text-ink"
+                      secondary="text-sm font-semibold text-cinnabar-dark"
+                      zhClassName="block font-zh"
+                      latinClassName="block"
+                    />
                   </h3>
                   <p className="mt-2 min-h-[2.8rem] text-[13px] leading-relaxed text-ink/65">{t(dish.desc)}</p>
                   <span

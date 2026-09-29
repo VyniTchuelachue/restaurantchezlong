@@ -1,11 +1,13 @@
-import { ArrowRight, CalendarDays, Star, UtensilsCrossed } from "lucide-react";
+import clsx from "clsx";
+import { CalendarDays, Star, UtensilsCrossed } from "lucide-react";
 import { Cloud, Seal } from "@/components/Decor";
+import { BtnLabel, Duo } from "@/components/Bilingual";
 import { images, restaurant } from "@/data/restaurant";
 import { formatRating, useLang } from "@/i18n";
 import { useReservation } from "@/reservation";
 
 export default function Hero() {
-  const { t, tl, lang, latin } = useLang();
+  const { t, tl, lang, latin, mode } = useLang();
   const { openReservation } = useReservation();
 
   return (
@@ -44,16 +46,29 @@ export default function Hero() {
           </a>
 
           <h1 className="animate-fadeUp [animation-delay:120ms]">
-            <span lang="zh" className="block font-zh text-4xl font-bold leading-[1.25] tracking-wide text-paper sm:text-5xl lg:text-[3.6rem]">
-              在杜阿拉，
-              <br />
-              品味真正的中国味道
-            </span>
-            <span lang={latin} className="mt-4 block font-serif text-2xl leading-snug text-gold-light sm:text-3xl lg:text-[2.1rem]">
-              {latin === "fr" ? "Le vrai goût de la Chine," : "The true taste of China,"}
-              <br />
-              {latin === "fr" ? "au cœur de Douala." : "in the heart of Douala."}
-            </span>
+            <Duo
+              zh={
+                <>
+                  在杜阿拉，
+                  <br />
+                  品味真正的中国味道
+                </>
+              }
+              latin={
+                <>
+                  {latin === "fr" ? "Le vrai goût de la Chine," : "The true taste of China,"}
+                  <br />
+                  {latin === "fr" ? "au cœur de Douala." : "in the heart of Douala."}
+                </>
+              }
+              primary={clsx(
+                "text-4xl font-bold text-paper sm:text-5xl",
+                mode === "zh" ? "lg:text-[3.6rem]" : "lg:text-[3.3rem]"
+              )}
+              secondary="mt-4 text-2xl text-gold-light sm:text-3xl lg:text-[2.1rem]"
+              zhClassName="block font-zh leading-[1.25] tracking-wide"
+              latinClassName="block font-serif leading-snug"
+            />
           </h1>
 
           <p lang="zh" className="mt-6 animate-fadeUp font-zh text-lg tracking-[0.2em] text-gold [animation-delay:240ms] sm:text-xl">
@@ -70,21 +85,11 @@ export default function Hero() {
           <div className="mt-9 flex animate-fadeUp flex-wrap gap-4 [animation-delay:380ms]">
             <a href="#menu" className="btn-red">
               <UtensilsCrossed className="h-6 w-6 text-gold-light" aria-hidden />
-              <span>
-                <span className="btn-label-zh">查看菜单</span>
-                <span className="btn-label-fr inline-flex items-center gap-1">
-                  {tl({ fr: "Voir le menu", en: "View the menu" })} <ArrowRight className="h-3 w-3" aria-hidden />
-                </span>
-              </span>
+              <BtnLabel zh="查看菜单" latin={tl({ fr: "Voir le menu", en: "View the menu" })} arrow />
             </a>
             <button type="button" onClick={() => openReservation()} className="btn-ghost">
               <CalendarDays className="h-6 w-6 text-gold-light" aria-hidden />
-              <span>
-                <span className="btn-label-zh">预订餐桌</span>
-                <span className="btn-label-fr inline-flex items-center gap-1">
-                  {tl({ fr: "Réserver une table", en: "Book a table" })} <ArrowRight className="h-3 w-3" aria-hidden />
-                </span>
-              </span>
+              <BtnLabel zh="预订餐桌" latin={tl({ fr: "Réserver une table", en: "Book a table" })} arrow />
             </button>
           </div>
         </div>

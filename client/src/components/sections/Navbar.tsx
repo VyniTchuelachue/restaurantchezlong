@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { CalendarDays, Menu as MenuIcon, X } from "lucide-react";
 import { Logo } from "@/components/Decor";
+import { BtnLabel, Duo } from "@/components/Bilingual";
 import { useLang } from "@/i18n";
 import { useReservation } from "@/reservation";
 
@@ -13,7 +14,10 @@ export const navItems = [
   { id: "contact", zh: "联系我们", fr: "Contact", en: "Contact" },
 ];
 
-/** 中文 | Français [FR/EN] — the switch turns every French text into English. */
+/** Three separate controls:
+ *  - 中文: Chinese goes in front (on top, larger) and turns gold.
+ *  - Français / English: the French or English text goes in front and turns gold.
+ *  - FR/EN switch: only picks French or English; it doesn't change which language is in front. */
 export function LangSwitch({ className }: { className?: string }) {
   const { mode, latin, setMode, setLatin } = useLang();
   const option = (active: boolean) =>
@@ -113,8 +117,14 @@ export default function Navbar() {
                     active === item.id ? "text-gold-light" : "text-paper/85 hover:text-gold-light"
                   )}
                 >
-                  <span className="block font-zh text-[14px] font-semibold tracking-wider">{item.zh}</span>
-                  <span className="block text-[11px] text-current opacity-75">{tl(item)}</span>
+                  <Duo
+                    zh={item.zh}
+                    latin={tl(item)}
+                    primary="text-[14px] font-semibold"
+                    secondary="text-[11px] opacity-75"
+                    zhClassName="block font-zh tracking-wider"
+                    latinClassName="block"
+                  />
                   <span
                     className={clsx(
                       "absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full bg-gold transition-transform duration-300",
@@ -130,10 +140,7 @@ export default function Navbar() {
         <div className="hidden items-center gap-5 xl:flex">
           <LangSwitch />
           <button type="button" onClick={() => openReservation()} className="btn-red py-2 pl-4 pr-3">
-            <span>
-              <span className="btn-label-zh">预订</span>
-              <span className="btn-label-fr">{tl({ fr: "Réserver", en: "Book" })}</span>
-            </span>
+            <BtnLabel zh="预订" latin={tl({ fr: "Réserver", en: "Book" })} />
             <CalendarDays className="h-5 w-5 text-gold-light" aria-hidden />
           </button>
         </div>
@@ -165,8 +172,13 @@ export default function Navbar() {
                     onClick={() => setOpen(false)}
                     className="flex items-baseline justify-between py-4"
                   >
-                    <span className="font-zh text-xl font-semibold text-paper">{item.zh}</span>
-                    <span className="text-sm text-gold-light">{tl(item)}</span>
+                    <Duo
+                      zh={item.zh}
+                      latin={tl(item)}
+                      primary="text-xl font-semibold text-paper"
+                      secondary="text-sm text-gold-light"
+                      zhClassName="font-zh"
+                    />
                   </a>
                 </li>
               ))}
@@ -181,10 +193,7 @@ export default function Navbar() {
               className="btn-red mt-6 w-full justify-center py-3"
             >
               <CalendarDays className="h-5 w-5 text-gold-light" aria-hidden />
-              <span>
-                <span className="btn-label-zh">预订餐桌</span>
-                <span className="btn-label-fr">{tl({ fr: "Réserver une table", en: "Book a table" })}</span>
-              </span>
+              <BtnLabel zh="预订餐桌" latin={tl({ fr: "Réserver une table", en: "Book a table" })} />
             </button>
           </nav>
         </div>

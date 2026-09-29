@@ -2,6 +2,7 @@ import { useState } from "react";
 import clsx from "clsx";
 import { Phone } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import { Duo } from "@/components/Bilingual";
 import SectionTitle from "@/components/SectionTitle";
 import { Chili, SpiceMeter } from "@/components/Decor";
 import { menu, restaurant } from "@/data/restaurant";
@@ -50,8 +51,14 @@ export default function Menu() {
                       : "border-paper-line bg-paper-dark/50 text-ink/75 hover:border-cinnabar/50 hover:text-cinnabar"
                   )}
                 >
-                  <span className="block font-zh text-sm font-bold leading-tight">{cat.title.zh}</span>
-                  <span className="block text-[11px] leading-tight opacity-80">{tl(cat.title)}</span>
+                  <Duo
+                    zh={cat.title.zh}
+                    latin={tl(cat.title)}
+                    primary="text-sm font-bold"
+                    secondary="text-[11px] opacity-80"
+                    zhClassName="block font-zh leading-tight"
+                    latinClassName="block leading-tight"
+                  />
                 </button>
               ))}
             </div>
@@ -59,10 +66,14 @@ export default function Menu() {
             <div id="menu-panel" role="tabpanel" aria-labelledby={`tab-${active.id}`} className="mt-8">
               <h3 className="flex items-center justify-center gap-3 text-center">
                 <span className="h-px w-10 bg-gold" aria-hidden />
-                <span lang="zh" className="font-zh text-2xl font-bold text-cinnabar">
-                  {active.title.zh}
-                </span>
-                <span className="font-serif text-xl text-cinnabar-dark">{tl(active.title)}</span>
+                <Duo
+                  zh={active.title.zh}
+                  latin={tl(active.title)}
+                  primary="text-2xl font-bold text-cinnabar"
+                  secondary="text-xl text-cinnabar-dark"
+                  zhClassName="font-zh"
+                  latinClassName="font-serif"
+                />
                 <span className="h-px w-10 bg-gold" aria-hidden />
               </h3>
 
@@ -73,10 +84,14 @@ export default function Menu() {
                     className="flex items-center justify-between gap-4 border-b border-dashed border-paper-line py-3.5"
                   >
                     <span>
-                      <span lang="zh" className="block font-zh text-[17px] font-bold text-ink">
-                        {item.zh}
-                      </span>
-                      <span className="block text-[13px] text-ink/65">{tl(item)}</span>
+                      <Duo
+                        zh={item.zh}
+                        latin={tl(item)}
+                        primary="text-[17px] font-bold text-ink"
+                        secondary="text-[13px] text-ink/65"
+                        zhClassName="block font-zh"
+                        latinClassName="block"
+                      />
                     </span>
                     <SpiceMeter level={item.spice} className="shrink-0" />
                   </li>

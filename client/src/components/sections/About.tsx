@@ -1,5 +1,6 @@
-import { ArrowRight, UtensilsCrossed } from "lucide-react";
+import { UtensilsCrossed } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import { BtnLabel, Duo } from "@/components/Bilingual";
 import { Mountains, Seal } from "@/components/Decor";
 import { images } from "@/data/restaurant";
 import { useLang } from "@/i18n";
@@ -40,12 +41,14 @@ export default function About() {
           <Reveal className="relative w-full px-4 py-14 sm:px-10 lg:px-14 xl:px-20">
             <div className="flex items-start justify-between gap-6">
               <h2>
-                <span lang="zh" className="block font-zh text-3xl font-bold leading-snug text-cinnabar sm:text-[2.2rem]">
-                  家乡的味道，来到杜阿拉
-                </span>
-                <span className="mt-2 block font-serif text-2xl text-cinnabar-dark sm:text-[1.7rem]">
-                  {tl({ fr: "Une vraie table chinoise à Douala", en: "A true Chinese table in Douala" })}
-                </span>
+                <Duo
+                  zh="家乡的味道，来到杜阿拉"
+                  latin={tl({ fr: "Une vraie table chinoise à Douala", en: "A true Chinese table in Douala" })}
+                  primary="text-3xl font-bold leading-snug text-cinnabar sm:text-[2.2rem]"
+                  secondary="mt-2 text-2xl text-cinnabar-dark sm:text-[1.7rem]"
+                  zhClassName="block font-zh"
+                  latinClassName="block font-serif"
+                />
               </h2>
               <Seal char="湘" className="mt-1 h-10 w-10 shrink-0 text-2xl" />
             </div>
@@ -66,12 +69,7 @@ export default function About() {
 
             <a href="#menu" className="btn-red mt-9">
               <UtensilsCrossed className="h-5 w-5 text-gold-light" aria-hidden />
-              <span>
-                <span className="btn-label-zh">了解菜单</span>
-                <span className="btn-label-fr inline-flex items-center gap-1">
-                  {tl({ fr: "Découvrir la carte", en: "Discover the menu" })} <ArrowRight className="h-3 w-3" aria-hidden />
-                </span>
-              </span>
+              <BtnLabel zh="了解菜单" latin={tl({ fr: "Découvrir la carte", en: "Discover the menu" })} arrow />
             </a>
           </Reveal>
         </div>

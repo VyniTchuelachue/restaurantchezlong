@@ -24,14 +24,6 @@
     @apply inline-flex items-center gap-3 rounded-md border border-gold/70 bg-ink/40 px-5 py-2.5 text-left text-paper backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:bg-ink/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold;
   }
 
-  .btn-label-zh {
-    @apply block font-zh text-[15px] font-semibold leading-tight;
-  }
-
-  .btn-label-fr {
-    @apply block text-[12px] leading-tight text-gold-light;
-  }
-
   .seal {
     @apply inline-grid place-items-center rounded-[3px] border border-cinnabar bg-cinnabar font-brush text-paper shadow-sm;
   }

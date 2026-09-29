@@ -1,4 +1,5 @@
 import Reveal from "@/components/Reveal";
+import { Duo } from "@/components/Bilingual";
 import SectionTitle from "@/components/SectionTitle";
 import { Chili, SpiceMeter } from "@/components/Decor";
 import { signatures } from "@/data/restaurant";
@@ -47,10 +48,16 @@ export default function Signatures() {
                 )}
               </div>
               <div className="px-3 py-4 text-center">
-                <h3 lang="zh" className="font-zh text-lg font-bold tracking-wider text-paper sm:text-xl">
-                  {dish.zh}
+                <h3>
+                  <Duo
+                    zh={dish.zh}
+                    latin={tl(dish)}
+                    primary="text-lg font-bold text-paper sm:text-xl"
+                    secondary="mt-1 text-[13px] leading-snug text-paper/75"
+                    zhClassName="block font-zh tracking-wider"
+                    latinClassName="block"
+                  />
                 </h3>
-                <p className="mt-1 text-[13px] leading-snug text-paper/75">{tl(dish)}</p>
                 <SpiceMeter level={dish.spice} className="mt-2 justify-center" />
               </div>
             </Reveal>
