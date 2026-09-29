@@ -5,11 +5,11 @@ import { restaurant } from "@/data/restaurant";
 import { useLang } from "@/i18n";
 
 export default function Footer() {
-  const { t } = useLang();
+  const { t, tl } = useLang();
   const year = new Date().getFullYear();
 
   const links = [
-    { href: restaurant.phoneHref, icon: Phone, label: t({ fr: "Appeler", zh: "致电" }) },
+    { href: restaurant.phoneHref, icon: Phone, label: t({ fr: "Appeler", en: "Call", zh: "致电" }) },
     { href: `https://wa.me/${restaurant.whatsapp}`, icon: MessageCircle, label: "WhatsApp" },
     { href: restaurant.mapsUrl, icon: MapPin, label: "Google Maps" },
   ];
@@ -21,20 +21,20 @@ export default function Footer() {
           <Logo />
         </a>
 
-        <nav aria-label={t({ fr: "Liens du pied de page", zh: "页脚导航" })}>
+        <nav aria-label={t({ fr: "Liens du pied de page", en: "Footer links", zh: "页脚导航" })}>
           <ul className="flex flex-wrap justify-center gap-x-6 gap-y-3">
             {navItems.map((item) => (
               <li key={item.id}>
                 <a href={`#${item.id}`} className="block text-center text-paper/75 transition hover:text-gold-light">
                   <span className="block font-zh text-sm">{item.zh}</span>
-                  <span className="block text-[11px] opacity-75">{item.fr}</span>
+                  <span className="block text-[11px] opacity-75">{tl(item)}</span>
                 </a>
               </li>
             ))}
           </ul>
         </nav>
 
-        <div className="flex items-center gap-6">
+        <div className="flex flex-wrap items-center justify-center gap-6">
           <LangSwitch />
           <div className="flex gap-2">
             {links.map(({ href, icon: Icon, label }) => (
@@ -56,7 +56,8 @@ export default function Footer() {
       <div className="border-t border-paper/10">
         <div className="container flex flex-col items-center justify-between gap-2 py-5 text-center text-xs text-paper/50 sm:flex-row">
           <p>
-            © {year} 鑫龙饭店 Chez Long. {t({ fr: "Tous droits réservés.", zh: "版权所有。" })}
+            © {year} 鑫龙饭店 Chez Long.{" "}
+            {t({ fr: "Tous droits réservés.", en: "All rights reserved.", zh: "版权所有。" })}
           </p>
           <p>
             {t(restaurant.city)} · {restaurant.phone}

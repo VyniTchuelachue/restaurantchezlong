@@ -5,7 +5,7 @@ import { signatures } from "@/data/restaurant";
 import { useLang } from "@/i18n";
 
 export default function Signatures() {
-  const { t } = useLang();
+  const { t, tl } = useLang();
 
   return (
     <section className="relative overflow-hidden ink-texture py-20 sm:py-24">
@@ -16,10 +16,11 @@ export default function Signatures() {
         <SectionTitle
           dark
           zh="招牌菜"
-          fr="Nos spécialités"
+          latin={tl({ fr: "Nos spécialités", en: "Our specialties" })}
           seal="湘"
           sub={t({
             fr: "Des plats signature aux saveurs du Hunan",
+            en: "Signature dishes with the flavors of Hunan",
             zh: "精选湘菜经典 · 招牌风味",
           })}
         />
@@ -35,7 +36,7 @@ export default function Signatures() {
               <div className="relative aspect-[4/3] overflow-hidden">
                 <img
                   src={dish.img}
-                  alt={dish.fr}
+                  alt={tl(dish)}
                   loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -49,7 +50,7 @@ export default function Signatures() {
                 <h3 lang="zh" className="font-zh text-lg font-bold tracking-wider text-paper sm:text-xl">
                   {dish.zh}
                 </h3>
-                <p className="mt-1 text-[13px] leading-snug text-paper/75">{dish.fr}</p>
+                <p className="mt-1 text-[13px] leading-snug text-paper/75">{tl(dish)}</p>
                 <SpiceMeter level={dish.spice} className="mt-2 justify-center" />
               </div>
             </Reveal>

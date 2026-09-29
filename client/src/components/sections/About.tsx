@@ -5,7 +5,7 @@ import { images } from "@/data/restaurant";
 import { useLang } from "@/i18n";
 
 export default function About() {
-  const { lang } = useLang();
+  const { mode, latin, tl } = useLang();
 
   const zhText = (
     <p lang="zh" className="font-zh text-[15px] leading-8 text-ink/80">
@@ -13,12 +13,12 @@ export default function About() {
       我们选用新鲜食材，传承家乡的味道，让每一餐都充满温暖与归属感。
     </p>
   );
-  const frText = (
-    <p className="text-[15px] leading-7 text-ink/75">
-      鑫龙饭店 — Chez Long propose une cuisine chinoise authentique, spécialement des saveurs du Hunan,
-      pour la communauté chinoise de Douala et pour tous ceux qui souhaitent découvrir la richesse de la
-      gastronomie chinoise. Des ingrédients frais, des recettes traditionnelles et un accueil chaleureux,
-      comme à la maison.
+  const latinText = (
+    <p lang={latin} className="text-[15px] leading-7 text-ink/75">
+      {tl({
+        fr: "鑫龙饭店 — Chez Long propose une cuisine chinoise authentique, spécialement des saveurs du Hunan, pour la communauté chinoise de Douala et pour tous ceux qui souhaitent découvrir la richesse de la gastronomie chinoise. Des ingrédients frais, des recettes traditionnelles et un accueil chaleureux, comme à la maison.",
+        en: "鑫龙饭店 — Chez Long serves authentic Chinese cuisine, with a focus on the flavors of Hunan, for Douala's Chinese community and for everyone who wants to discover the richness of Chinese gastronomy. Fresh ingredients, traditional recipes and a warm welcome, just like home.",
+      })}
     </p>
   );
 
@@ -28,7 +28,7 @@ export default function About() {
         <Reveal className="relative min-h-[320px] sm:min-h-[420px] lg:min-h-[560px]">
           <img
             src={images.chef}
-            alt="Chef faisant sauter un wok dans les flammes"
+            alt={tl({ fr: "Chef faisant sauter un wok dans les flammes", en: "Chef tossing a flaming wok" })}
             loading="lazy"
             className="absolute inset-0 h-full w-full object-cover"
           />
@@ -44,21 +44,21 @@ export default function About() {
                   家乡的味道，来到杜阿拉
                 </span>
                 <span className="mt-2 block font-serif text-2xl text-cinnabar-dark sm:text-[1.7rem]">
-                  Une vraie table chinoise à Douala
+                  {tl({ fr: "Une vraie table chinoise à Douala", en: "A true Chinese table in Douala" })}
                 </span>
               </h2>
               <Seal char="湘" className="mt-1 h-10 w-10 shrink-0 text-2xl" />
             </div>
 
             <div className="mt-8 space-y-5">
-              {lang === "zh" ? (
+              {mode === "zh" ? (
                 <>
                   {zhText}
-                  {frText}
+                  {latinText}
                 </>
               ) : (
                 <>
-                  {frText}
+                  {latinText}
                   {zhText}
                 </>
               )}
@@ -69,7 +69,7 @@ export default function About() {
               <span>
                 <span className="btn-label-zh">了解菜单</span>
                 <span className="btn-label-fr inline-flex items-center gap-1">
-                  Découvrir la carte <ArrowRight className="h-3 w-3" aria-hidden />
+                  {tl({ fr: "Découvrir la carte", en: "Discover the menu" })} <ArrowRight className="h-3 w-3" aria-hidden />
                 </span>
               </span>
             </a>

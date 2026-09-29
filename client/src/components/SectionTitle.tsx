@@ -3,7 +3,8 @@ import { Seal } from "@/components/Decor";
 
 type SectionTitleProps = {
   zh: string;
-  fr: string;
+  /** French or English counterpart shown next to the Chinese title. */
+  latin: string;
   sub?: string;
   seal?: string;
   dark?: boolean;
@@ -11,10 +12,10 @@ type SectionTitleProps = {
   className?: string;
 };
 
-/** Bilingual heading: Chinese title with its French counterpart alongside. */
+/** Bilingual heading: Chinese title with its French/English counterpart alongside. */
 export default function SectionTitle({
   zh,
-  fr,
+  latin,
   sub,
   seal,
   dark = false,
@@ -39,7 +40,7 @@ export default function SectionTitle({
           {zh}
         </span>
         <span className={clsx("font-serif text-2xl sm:text-3xl", dark ? "text-gold-light" : "text-cinnabar-dark")}>
-          {fr}
+          {latin}
         </span>
         {seal && <Seal char={seal} className="h-7 w-7 self-center text-base" />}
       </h2>

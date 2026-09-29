@@ -18,6 +18,7 @@ export default function FloatingActions() {
 
   const message = t({
     fr: "Bonjour 鑫龙饭店, je souhaite avoir des informations.",
+    en: "Hello 鑫龙饭店, I would like some information.",
     zh: "您好，鑫龙饭店，我想咨询一下。",
   });
 
@@ -26,7 +27,7 @@ export default function FloatingActions() {
       href={`https://wa.me/${restaurant.whatsapp}?text=${encodeURIComponent(message)}`}
       target="_blank"
       rel="noreferrer"
-      aria-label={t({ fr: "Nous écrire sur WhatsApp", zh: "WhatsApp 联系我们" })}
+      aria-label={t({ fr: "Nous écrire sur WhatsApp", en: "Message us on WhatsApp", zh: "WhatsApp 联系我们" })}
       className={clsx(
         "fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-lg ring-4 ring-white/20 transition-all duration-300 hover:scale-105",
         visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-6 opacity-0"

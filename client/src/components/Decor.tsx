@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import type { SpiceLevel } from "@/data/restaurant";
+import { useLang } from "@/i18n";
 
 /** Square red seal (印章) with a single brush character. */
 export function Seal({ char, className }: { char: string; className?: string }) {
@@ -11,6 +12,7 @@ export function Seal({ char, className }: { char: string; className?: string }) 
 }
 
 export function Logo({ light = true }: { light?: boolean }) {
+  const { tl } = useLang();
   return (
     <span className="flex items-center gap-3">
       <span
@@ -35,7 +37,7 @@ export function Logo({ light = true }: { light?: boolean }) {
             light ? "text-gold/80" : "text-ink/60"
           )}
         >
-          Chez Long · Restaurant chinois
+          Chez Long · {tl({ fr: "Restaurant chinois", en: "Chinese restaurant" })}
         </span>
       </span>
     </span>
@@ -110,9 +112,11 @@ export function Chili({ className }: { className?: string }) {
 }
 
 export function SpiceMeter({ level, className }: { level: SpiceLevel; className?: string }) {
+  const { t } = useLang();
   if (level === 0) return null;
+  const label = t({ fr: `Piment ${level}/3`, en: `Spice ${level}/3`, zh: `辣度 ${level}/3` });
   return (
-    <span className={clsx("inline-flex items-center gap-0.5", className)} aria-label={`Piment ${level}/3`}>
+    <span className={clsx("inline-flex items-center gap-0.5", className)} role="img" aria-label={label}>
       {Array.from({ length: level }, (_, i) => (
         <Chili key={i} className="h-3.5 w-3.5 text-cinnabar-light" />
       ))}

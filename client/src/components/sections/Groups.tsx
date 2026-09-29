@@ -1,18 +1,18 @@
 import { ArrowRight, Cake, Briefcase, Users, DoorClosed } from "lucide-react";
 import Reveal from "@/components/Reveal";
-import { images } from "@/data/restaurant";
+import { images, type Text } from "@/data/restaurant";
 import { useLang } from "@/i18n";
 import { useReservation } from "@/reservation";
 
-export default function Groups() {
-  const { t, lang } = useLang();
-  const { openReservation } = useReservation();
+const occasions: { icon: typeof Users; text: Text }[] = [
+  { icon: Users, text: { fr: "Repas de famille", en: "Family meals", zh: "家庭聚会" } },
+  { icon: Cake, text: { fr: "Anniversaires", en: "Birthdays", zh: "生日庆祝" } },
+  { icon: Briefcase, text: { fr: "Dîners d'entreprise", en: "Business dinners", zh: "公司宴请" } },
+];
 
-  const occasions = [
-    { icon: Users, text: { fr: "Repas de famille", zh: "家庭聚会" } },
-    { icon: Cake, text: { fr: "Anniversaires", zh: "生日庆祝" } },
-    { icon: Briefcase, text: { fr: "Dîners d'entreprise", zh: "公司宴请" } },
-  ];
+export default function Groups() {
+  const { t, tl, mode } = useLang();
+  const { openReservation } = useReservation();
 
   return (
     <section id="salons" className="relative bg-cinnabar-deep">
@@ -20,7 +20,7 @@ export default function Groups() {
         <Reveal className="relative min-h-[300px] sm:min-h-[400px] lg:min-h-[480px]">
           <img
             src={images.banquet}
-            alt="Grande table ronde dressée pour un banquet"
+            alt={tl({ fr: "Grande table ronde dressée pour un banquet", en: "Large round table set for a banquet" })}
             loading="lazy"
             className="absolute inset-0 h-full w-full object-cover"
           />
@@ -41,13 +41,14 @@ export default function Groups() {
                 聚餐与包间
               </span>
               <span className="mt-2 block font-serif text-2xl text-gold-light">
-                Repas de groupe & salons privés
+                {tl({ fr: "Repas de groupe & salons privés", en: "Group dining & private rooms" })}
               </span>
             </h2>
 
             <p className="mt-6 max-w-md text-[15px] leading-relaxed text-paper/85">
               {t({
                 fr: "Grandes tables rondes à partager et salons privés : idéal pour les repas en famille, les anniversaires, les dîners d'entreprise et plus encore.",
+                en: "Large round tables to share and private rooms: ideal for family meals, birthdays, business dinners and more.",
                 zh: "圆桌合菜与私密包间，适合家庭聚会、生日庆祝、公司宴请等多种场合。",
               })}
             </p>
@@ -59,7 +60,7 @@ export default function Groups() {
                   className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-ink/20 px-3.5 py-1.5 text-sm text-paper"
                 >
                   <Icon className="h-4 w-4 text-gold-light" aria-hidden />
-                  <span className={lang === "zh" ? "font-zh" : undefined}>{t(text)}</span>
+                  <span className={mode === "zh" ? "font-zh" : undefined}>{t(text)}</span>
                 </li>
               ))}
             </ul>
@@ -69,7 +70,7 @@ export default function Groups() {
               <span>
                 <span className="btn-label-zh">预订包间</span>
                 <span className="btn-label-fr inline-flex items-center gap-1">
-                  Réserver un salon privé <ArrowRight className="h-3 w-3" aria-hidden />
+                  {tl({ fr: "Réserver un salon privé", en: "Book a private room" })} <ArrowRight className="h-3 w-3" aria-hidden />
                 </span>
               </span>
             </button>

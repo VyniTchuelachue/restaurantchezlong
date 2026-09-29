@@ -1,6 +1,7 @@
 # 鑫龙饭店 Chez Long — Site Web
 
-Site vitrine bilingue (français / 中文) du restaurant chinois **鑫龙饭店** à Bonapriso, Douala.
+Site vitrine du restaurant chinois **鑫龙饭店** à Bonapriso, Douala, en 中文 + français
+(un interrupteur FR/EN à côté de « Français » passe toute la partie française en anglais).
 React + TypeScript + Tailwind CSS (client) et Node.js / Express (serveur de réservations).
 
 ## Structure

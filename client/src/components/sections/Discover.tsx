@@ -12,9 +12,13 @@ const tagStyle: Record<StarterDish["tag"]["tone"], { className: string; icon: ty
 };
 
 export default function Discover() {
-  const { t, lang } = useLang();
+  const { t, tl, mode, latin } = useLang();
   const zhHeading = "第一次品尝中国菜？从这些开始";
-  const frHeading = "Vous découvrez la cuisine chinoise ? Commencez ici.";
+  const latinHeading = tl({
+    fr: "Vous découvrez la cuisine chinoise ? Commencez ici.",
+    en: "New to Chinese cuisine? Start here.",
+  });
+  const zhFirst = mode === "zh";
 
   return (
     <section className="relative overflow-hidden paper-texture py-20 sm:py-24">
@@ -23,15 +27,19 @@ export default function Discover() {
 
       <div className="container relative">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p lang={lang === "zh" ? "fr" : "zh"} className={clsx("text-cinnabar", lang === "zh" ? "font-serif text-lg" : "font-zh text-lg font-semibold")}>
-            {lang === "zh" ? frHeading : zhHeading}
+          <p lang={zhFirst ? latin : "zh"} className={clsx("text-lg text-cinnabar", zhFirst ? "font-serif" : "font-zh font-semibold")}>
+            {zhFirst ? latinHeading : zhHeading}
           </p>
-          <h2 className={clsx("mt-2 text-3xl font-bold leading-tight text-cinnabar-dark sm:text-4xl", lang === "zh" ? "font-zh" : "font-serif")}>
-            {lang === "zh" ? zhHeading : frHeading}
+          <h2
+            lang={zhFirst ? "zh" : latin}
+            className={clsx("mt-2 text-3xl font-bold leading-tight text-cinnabar-dark sm:text-4xl", zhFirst ? "font-zh" : "font-serif")}
+          >
+            {zhFirst ? zhHeading : latinHeading}
           </h2>
           <p className="mt-4 text-sm text-ink/65">
             {t({
               fr: "Des plats savoureux et accessibles pour une première expérience.",
+              en: "Tasty, approachable dishes for a first experience.",
               zh: "口味温和、容易接受，最适合第一次尝试中餐的朋友。",
             })}
           </p>
@@ -51,7 +59,7 @@ export default function Discover() {
                 <div className="aspect-[16/9] overflow-hidden">
                   <img
                     src={dish.img}
-                    alt={dish.fr}
+                    alt={tl(dish)}
                     loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
@@ -61,7 +69,7 @@ export default function Discover() {
                     <span lang="zh" className="block font-zh text-xl font-bold text-ink">
                       {dish.zh}
                     </span>
-                    <span className="block text-sm font-semibold text-cinnabar-dark">{dish.fr}</span>
+                    <span className="block text-sm font-semibold text-cinnabar-dark">{tl(dish)}</span>
                   </h3>
                   <p className="mt-2 min-h-[2.8rem] text-[13px] leading-relaxed text-ink/65">{t(dish.desc)}</p>
                   <span

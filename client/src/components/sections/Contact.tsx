@@ -1,35 +1,38 @@
 import { ArrowRight, MapPin, MessageCircle, Navigation, Phone, Star } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { restaurant } from "@/data/restaurant";
-import { useLang } from "@/i18n";
+import { formatRating, useLang } from "@/i18n";
 
 export default function Contact() {
-  const { t, lang } = useLang();
-  const rating = lang === "fr" ? restaurant.googleRating.toFixed(1).replace(".", ",") : restaurant.googleRating.toFixed(1);
+  const { t, tl, lang } = useLang();
 
   const rows = [
     {
       icon: MapPin,
       main: t(restaurant.city),
-      sub: `Plus code : ${restaurant.plusCode}`,
+      sub: t({
+        fr: `Plus code : ${restaurant.plusCode}`,
+        en: `Plus code: ${restaurant.plusCode}`,
+        zh: `位置代码：${restaurant.plusCode}`,
+      }),
       href: restaurant.mapsUrl,
     },
     {
       icon: Phone,
       main: restaurant.phone,
-      sub: t({ fr: "Réservations & informations", zh: "订座及咨询" }),
+      sub: t({ fr: "Réservations & informations", en: "Reservations & information", zh: "订座及咨询" }),
       href: restaurant.phoneHref,
     },
     {
       icon: MessageCircle,
       main: "WhatsApp",
-      sub: t({ fr: "Écrivez-nous pour réserver", zh: "发消息预订" }),
+      sub: t({ fr: "Écrivez-nous pour réserver", en: "Message us to book", zh: "发消息预订" }),
       href: `https://wa.me/${restaurant.whatsapp}`,
     },
     {
       icon: Star,
-      main: `${rating} / 5`,
-      sub: t({ fr: "Note des clients sur Google", zh: "谷歌顾客评分" }),
+      main: `${formatRating(restaurant.googleRating, lang)} / 5`,
+      sub: t({ fr: "Note des clients sur Google", en: "Customer rating on Google", zh: "谷歌顾客评分" }),
       href: restaurant.mapsUrl,
     },
   ];
@@ -79,7 +82,7 @@ export default function Contact() {
                 <span>
                   <span className="btn-label-zh">获取路线</span>
                   <span className="btn-label-fr inline-flex items-center gap-1">
-                    Itinéraire <ArrowRight className="h-3 w-3" aria-hidden />
+                    {tl({ fr: "Itinéraire", en: "Directions" })} <ArrowRight className="h-3 w-3" aria-hidden />
                   </span>
                 </span>
               </a>
@@ -88,7 +91,7 @@ export default function Contact() {
                 <span>
                   <span className="btn-label-zh">电话预订</span>
                   <span className="btn-label-fr inline-flex items-center gap-1">
-                    Appeler <ArrowRight className="h-3 w-3" aria-hidden />
+                    {tl({ fr: "Appeler", en: "Call us" })} <ArrowRight className="h-3 w-3" aria-hidden />
                   </span>
                 </span>
               </a>
@@ -98,7 +101,7 @@ export default function Contact() {
 
         <div className="relative min-h-[360px] bg-paper-dark lg:min-h-full">
           <iframe
-            title={t({ fr: "Plan d'accès — 鑫龙饭店, Douala", zh: "鑫龙饭店位置地图" })}
+            title={t({ fr: "Plan d'accès — 鑫龙饭店, Douala", en: "Map — 鑫龙饭店, Douala", zh: "鑫龙饭店位置地图" })}
             src={restaurant.mapEmbedUrl}
             className="absolute inset-0 h-full w-full border-0 grayscale-[35%] sepia-[15%]"
             loading="lazy"

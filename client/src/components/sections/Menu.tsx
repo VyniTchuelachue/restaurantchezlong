@@ -8,7 +8,7 @@ import { menu, restaurant } from "@/data/restaurant";
 import { useLang } from "@/i18n";
 
 export default function Menu() {
-  const { t } = useLang();
+  const { t, tl } = useLang();
   const [activeId, setActiveId] = useState(menu[0].id);
   const active = menu.find((c) => c.id === activeId) ?? menu[0];
 
@@ -19,9 +19,10 @@ export default function Menu() {
         <SectionTitle
           dark
           zh="菜单"
-          fr="La carte"
+          latin={tl({ fr: "La carte", en: "Our menu" })}
           sub={t({
             fr: "Une sélection de nos plats — demandez aussi les suggestions du jour.",
+            en: "A selection of our dishes — ask about today's specials too.",
             zh: "精选菜品 · 更多每日特色菜请咨询服务员",
           })}
         />
@@ -30,7 +31,7 @@ export default function Menu() {
           <div className="rounded-md border-2 border-double border-gold/70 px-4 py-8 sm:px-10">
             <div
               role="tablist"
-              aria-label={t({ fr: "Catégories du menu", zh: "菜单分类" })}
+              aria-label={t({ fr: "Catégories du menu", en: "Menu categories", zh: "菜单分类" })}
               className="scrollbar-none -mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:justify-center sm:px-0"
             >
               {menu.map((cat) => (
@@ -50,7 +51,7 @@ export default function Menu() {
                   )}
                 >
                   <span className="block font-zh text-sm font-bold leading-tight">{cat.title.zh}</span>
-                  <span className="block text-[11px] leading-tight opacity-80">{cat.title.fr}</span>
+                  <span className="block text-[11px] leading-tight opacity-80">{tl(cat.title)}</span>
                 </button>
               ))}
             </div>
@@ -61,7 +62,7 @@ export default function Menu() {
                 <span lang="zh" className="font-zh text-2xl font-bold text-cinnabar">
                   {active.title.zh}
                 </span>
-                <span className="font-serif text-xl text-cinnabar-dark">{active.title.fr}</span>
+                <span className="font-serif text-xl text-cinnabar-dark">{tl(active.title)}</span>
                 <span className="h-px w-10 bg-gold" aria-hidden />
               </h3>
 
@@ -75,7 +76,7 @@ export default function Menu() {
                       <span lang="zh" className="block font-zh text-[17px] font-bold text-ink">
                         {item.zh}
                       </span>
-                      <span className="block text-[13px] text-ink/65">{item.fr}</span>
+                      <span className="block text-[13px] text-ink/65">{tl(item)}</span>
                     </span>
                     <SpiceMeter level={item.spice} className="shrink-0" />
                   </li>
@@ -86,10 +87,11 @@ export default function Menu() {
             <div className="mt-8 flex flex-col items-center justify-between gap-4 text-center text-xs text-ink/60 sm:flex-row sm:text-left">
               <p className="flex items-center gap-1.5">
                 <Chili className="h-3.5 w-3.5 text-cinnabar-light" />
-                {t({ fr: "= niveau de piment", zh: "= 辣度" })}
+                {t({ fr: "= niveau de piment", en: "= spice level", zh: "= 辣度" })}
                 <span className="mx-1">·</span>
                 {t({
                   fr: "Prix et plats du jour : sur place ou par téléphone.",
+                  en: "Prices and daily specials: at the restaurant or by phone.",
                   zh: "价格及每日特色菜请到店或来电咨询。",
                 })}
               </p>

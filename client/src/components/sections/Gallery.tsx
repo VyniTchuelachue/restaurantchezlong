@@ -7,7 +7,7 @@ import { gallery } from "@/data/restaurant";
 import { useLang } from "@/i18n";
 
 export default function Gallery() {
-  const { t } = useLang();
+  const { t, tl } = useLang();
   const trackRef = useRef<HTMLUListElement>(null);
   const [edges, setEdges] = useState({ start: true, end: false });
 
@@ -43,9 +43,9 @@ export default function Gallery() {
       <div className="container relative">
         <SectionTitle
           zh="餐厅环境"
-          fr="Notre ambiance"
+          latin={tl({ fr: "Notre ambiance", en: "Our atmosphere" })}
           seal="境"
-          sub={t({ fr: "Un cadre élégant et convivial", zh: "舒适优雅 · 正宗中餐氛围" })}
+          sub={t({ fr: "Un cadre élégant et convivial", en: "An elegant, welcoming setting", zh: "舒适优雅 · 正宗中餐氛围" })}
         />
 
         <div className="relative mt-12">
@@ -54,7 +54,7 @@ export default function Gallery() {
             className={clsx(arrow, "-left-3 lg:-left-5")}
             onClick={() => scroll(-1)}
             disabled={edges.start}
-            aria-label={t({ fr: "Photo précédente", zh: "上一张" })}
+            aria-label={t({ fr: "Photo précédente", en: "Previous photo", zh: "上一张" })}
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
@@ -71,7 +71,7 @@ export default function Gallery() {
               >
                 <img
                   src={photo.img}
-                  alt={photo.caption.fr}
+                  alt={tl(photo.caption)}
                   loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -80,7 +80,7 @@ export default function Gallery() {
                     <span lang="zh" className="mr-2 font-zh font-bold text-gold-light">
                       {photo.caption.zh}
                     </span>
-                    {photo.caption.fr}
+                    {tl(photo.caption)}
                   </p>
                 </div>
               </li>
@@ -92,7 +92,7 @@ export default function Gallery() {
             className={clsx(arrow, "-right-3 lg:-right-5")}
             onClick={() => scroll(1)}
             disabled={edges.end}
-            aria-label={t({ fr: "Photo suivante", zh: "下一张" })}
+            aria-label={t({ fr: "Photo suivante", en: "Next photo", zh: "下一张" })}
           >
             <ChevronRight className="h-5 w-5" />
           </button>

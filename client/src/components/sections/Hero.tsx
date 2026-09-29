@@ -1,13 +1,12 @@
 import { ArrowRight, CalendarDays, Star, UtensilsCrossed } from "lucide-react";
 import { Cloud, Seal } from "@/components/Decor";
 import { images, restaurant } from "@/data/restaurant";
-import { useLang } from "@/i18n";
+import { formatRating, useLang } from "@/i18n";
 import { useReservation } from "@/reservation";
 
 export default function Hero() {
-  const { t, lang } = useLang();
+  const { t, tl, lang, latin } = useLang();
   const { openReservation } = useReservation();
-  const rating = lang === "fr" ? restaurant.googleRating.toFixed(1).replace(".", ",") : restaurant.googleRating.toFixed(1);
 
   return (
     <section id="accueil" className="relative isolate overflow-hidden bg-ink">
@@ -40,8 +39,8 @@ export default function Hero() {
             className="mb-6 inline-flex animate-fadeUp items-center gap-2 rounded-full border border-gold/40 bg-ink/50 px-3.5 py-1.5 text-xs text-paper/90 backdrop-blur transition hover:border-gold"
           >
             <Star className="h-3.5 w-3.5 fill-gold text-gold" aria-hidden />
-            <span className="font-semibold text-gold-light">{rating}</span>
-            <span>{t({ fr: "sur Google Maps", zh: "谷歌地图评分" })}</span>
+            <span className="font-semibold text-gold-light">{formatRating(restaurant.googleRating, lang)}</span>
+            <span>{t({ fr: "sur Google Maps", en: "on Google Maps", zh: "谷歌地图评分" })}</span>
           </a>
 
           <h1 className="animate-fadeUp [animation-delay:120ms]">
@@ -50,10 +49,10 @@ export default function Hero() {
               <br />
               品味真正的中国味道
             </span>
-            <span className="mt-4 block font-serif text-2xl leading-snug text-gold-light sm:text-3xl lg:text-[2.1rem]">
-              Le vrai goût de la Chine,
+            <span lang={latin} className="mt-4 block font-serif text-2xl leading-snug text-gold-light sm:text-3xl lg:text-[2.1rem]">
+              {latin === "fr" ? "Le vrai goût de la Chine," : "The true taste of China,"}
               <br />
-              au cœur de Douala.
+              {latin === "fr" ? "au cœur de Douala." : "in the heart of Douala."}
             </span>
           </h1>
 
@@ -63,6 +62,7 @@ export default function Hero() {
           <p className="mt-3 max-w-md animate-fadeUp text-[15px] leading-relaxed text-paper/85 [animation-delay:300ms]">
             {t({
               fr: "Une cuisine chinoise authentique pour vos repas en famille, entre amis et d'affaires.",
+              en: "Authentic Chinese cuisine for family meals, get-togethers with friends and business dinners.",
               zh: "正宗中餐，适合家庭聚会、朋友小聚与商务宴请。",
             })}
           </p>
@@ -73,7 +73,7 @@ export default function Hero() {
               <span>
                 <span className="btn-label-zh">查看菜单</span>
                 <span className="btn-label-fr inline-flex items-center gap-1">
-                  Voir le menu <ArrowRight className="h-3 w-3" aria-hidden />
+                  {tl({ fr: "Voir le menu", en: "View the menu" })} <ArrowRight className="h-3 w-3" aria-hidden />
                 </span>
               </span>
             </a>
@@ -82,7 +82,7 @@ export default function Hero() {
               <span>
                 <span className="btn-label-zh">预订餐桌</span>
                 <span className="btn-label-fr inline-flex items-center gap-1">
-                  Réserver une table <ArrowRight className="h-3 w-3" aria-hidden />
+                  {tl({ fr: "Réserver une table", en: "Book a table" })} <ArrowRight className="h-3 w-3" aria-hidden />
                 </span>
               </span>
             </button>
