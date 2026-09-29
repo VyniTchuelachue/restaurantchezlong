@@ -1,4 +1,5 @@
-import { MapPin, MessageCircle, Navigation, Phone, Star } from "lucide-react";
+import { MapPin, Navigation, Phone, Star } from "lucide-react";
+import { WhatsAppIcon } from "@/components/Decor";
 import Reveal from "@/components/Reveal";
 import { BtnLabel, Duo } from "@/components/Bilingual";
 import { restaurant } from "@/data/restaurant";
@@ -25,7 +26,7 @@ export default function Contact() {
       href: restaurant.phoneHref,
     },
     {
-      icon: MessageCircle,
+      icon: WhatsAppIcon,
       main: "WhatsApp",
       sub: t({ fr: "Écrivez-nous pour réserver", en: "Message us to book", zh: "发消息预订" }),
       href: `https://wa.me/${restaurant.whatsapp}`,

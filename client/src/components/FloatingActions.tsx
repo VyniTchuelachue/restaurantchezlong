@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import clsx from "clsx";
-import { MessageCircle } from "lucide-react";
+import { WhatsAppIcon } from "@/components/Decor";
 import { restaurant } from "@/data/restaurant";
 import { useLang } from "@/i18n";
 
@@ -33,7 +33,7 @@ export default function FloatingActions() {
         visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-6 opacity-0"
       )}
     >
-      <MessageCircle className="h-7 w-7" aria-hidden />
+      <WhatsAppIcon className="h-7 w-7" />
     </a>
   );
 }

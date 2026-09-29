@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import clsx from "clsx";
-import { CheckCircle2, Loader2, MessageCircle, Phone, X } from "lucide-react";
-import { Seal } from "@/components/Decor";
+import { CheckCircle2, Loader2, Phone, X } from "lucide-react";
+import { Seal, WhatsAppIcon } from "@/components/Decor";
 import { BtnLabel, Duo } from "@/components/Bilingual";
 import { restaurant } from "@/data/restaurant";
 import { useLang } from "@/i18n";
@@ -189,7 +189,7 @@ export default function ReservationModal({
                 rel="noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-md bg-[#25D366] px-5 py-3 font-semibold text-white transition hover:brightness-95"
               >
-                <MessageCircle className="h-5 w-5" aria-hidden />
+                <WhatsAppIcon className="h-5 w-5" />
                 {t({ fr: "Envoyer sur WhatsApp", en: "Send on WhatsApp", zh: "通过 WhatsApp 发送" })}
               </a>
               <a

@@ -1,5 +1,5 @@
-import { MessageCircle, Phone, MapPin } from "lucide-react";
-import { Logo } from "@/components/Decor";
+import { Phone, MapPin } from "lucide-react";
+import { Logo, WhatsAppIcon } from "@/components/Decor";
 import { Duo } from "@/components/Bilingual";
 import { LangSwitch, navItems } from "@/components/sections/Navbar";
 import { restaurant } from "@/data/restaurant";
@@ -11,7 +11,7 @@ export default function Footer() {
 
   const links = [
     { href: restaurant.phoneHref, icon: Phone, label: t({ fr: "Appeler", en: "Call", zh: "致电" }) },
-    { href: `https://wa.me/${restaurant.whatsapp}`, icon: MessageCircle, label: "WhatsApp" },
+    { href: `https://wa.me/${restaurant.whatsapp}`, icon: WhatsAppIcon, label: "WhatsApp" },
     { href: restaurant.mapsUrl, icon: MapPin, label: "Google Maps" },
   ];
 
